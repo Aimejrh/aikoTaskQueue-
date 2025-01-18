@@ -1,18 +1,18 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root{
-  --bg-color: linear-gradient(135deg, #b0d1e8, #f9cbf3);
-  --bg-f-color: linear-gradient(135deg,#ede4ec, #d0d9e0);
-  --item-color:  #7758d4;
-  --button-color:  #7758d4;
-  --button-h-color:  #3d287c;
-  --form-color:  #964f4f;
+:root {
+  --bg-color: linear-gradient(135deg, #41657f, #6d4067);
+  --bg-f-color: linear-gradient(135deg, #492b46, #000000);
+  --item-color: #52386a;
+  --button-color: #26145d;
+  --button-h-color: #3d287c;
+  --form-color: #964f4f;
   --input-color: #f8d8d8;
-  --delete-button:  #d40707;
-  --text-color:  #000000;
-  --white-t-color:  #ffffff;
+  --delete-button: #d40707;
+  --text-color: #000000;
+  --white-t-color: #ffffff;
 }
