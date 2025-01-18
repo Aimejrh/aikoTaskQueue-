@@ -4,12 +4,12 @@ import TodoPage from "./pages/todoPage.vue";
 
 <template>
   <div class="containerApp">
-    <TodoPage />
+    <!-- <TodoPage /> -->
   </div>
 </template>
 
 <style>
-.containerApp {
+/* .containerApp {
   height: 100vh;
-}
+} */
 </style>
