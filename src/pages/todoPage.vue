@@ -14,14 +14,8 @@
   </div>
 </template>
 
-<script>
-import sidebarMenu from '../components/sidebarMenu.vue';
-import SidebarForm from '../components/sidebarForm.vue';
+<!-- <script>
 export default {
-  components: {
-    sidebarMenu,
-    SidebarForm,
-  },
   data() {
     return {
       taskArray: [],
@@ -47,15 +41,66 @@ export default {
       this.taskArray.splice(index, 1);
     },
     selectTask(task) {
+      if (this.selectedTask && this.selectedTask.title === task.title) {
+        this.isSidebarForm = !this.isSidebarForm;
+      } else {
+        this.selectedTask = task;
+        this.isSidebarForm = true;
+      }
+    },
+    toggleSidebarForm() {
+      this.selectedTask = { title: '', text: '' };
+      this.isSidebarForm = true;
+    },
+    handleTaskChange(updatedTask) {
+      this.selectedTask = updatedTask;
+    },
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    },
+  },
+};
+</script> -->
+
+<script>
+import SidebarForm from '../components/sidebarForm.vue';
+import sidebarMenu from '../components/sidebarMenu.vue';
+
+export default {
+  components: {
+    SidebarForm,
+    sidebarMenu,
+  },
+  data() {
+    return {
+      taskArray: [],
+      selectedTask: null,
+      isSidebarForm: false,
+      isMenuOpen: false,
+    };
+  },
+  methods: {
+    saveTask(task) {
       if (task.title && task.text) {
         const index = this.taskArray.findIndex(t => t.id === task.id);
         if (index !== -1) {
           this.taskArray[index] = task;
         } else {
-          this.taskArray.push({ ...task, id: Date.now() });
+          this.taskArray.push(task);
         }
         this.isSidebarForm = false;
         this.selectedTask = null;
+      }
+    },
+    deleteTask(index) {
+      this.taskArray.splice(index, 1);
+    },
+    selectTask(task) {
+      if (this.selectedTask && this.selectedTask.title === task.title) {
+        this.isSidebarForm = !this.isSidebarForm;
+      } else {
+        this.selectedTask = task;
+        this.isSidebarForm = true;
       }
     },
     toggleSidebarForm() {
