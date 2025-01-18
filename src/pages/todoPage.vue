@@ -1,8 +1,10 @@
 <template>
   <div class="todoPage">
     <div :class="['sectionOne', { 'menu-open': isMenuOpen }]">
-      <sidebarMenu :tasks="taskArray" @delete-task="deleteTask" :selectedTask="selectedTask" @select-task="selectTask"
-        @toggle-sidebar-form="toggleSidebarForm" :isMenuOpen="isMenuOpen" @toggle-menu="toggleMenu" />
+      <sidebarMenu :tasks="taskArray" :selectedTask="selectedTask" :toggleMenu="toggleMenu"
+        :toggleSidebarForm="toggleSidebarForm" :selectTask="selectTask" :deleteTask="deleteTask"
+        :isMenuOpen="isMenuOpen" />
+
     </div>
 
     <div class="sectionTwo">
@@ -13,54 +15,6 @@
     </div>
   </div>
 </template>
-
-<!-- <script>
-export default {
-  data() {
-    return {
-      taskArray: [],
-      selectedTask: null,
-      isSidebarForm: false,
-      isMenuOpen: false,
-    };
-  },
-  methods: {
-    saveTask(task) {
-      if (task.title && task.text) {
-        const index = this.taskArray.findIndex(t => t.title === task.title);
-        if (index !== -1) {
-          this.taskArray[index] = task;
-        } else {
-          this.taskArray.push(task);
-        }
-        this.isSidebarForm = false;
-        this.selectedTask = null;
-      }
-    },
-    deleteTask(index) {
-      this.taskArray.splice(index, 1);
-    },
-    selectTask(task) {
-      if (this.selectedTask && this.selectedTask.title === task.title) {
-        this.isSidebarForm = !this.isSidebarForm;
-      } else {
-        this.selectedTask = task;
-        this.isSidebarForm = true;
-      }
-    },
-    toggleSidebarForm() {
-      this.selectedTask = { title: '', text: '' };
-      this.isSidebarForm = true;
-    },
-    handleTaskChange(updatedTask) {
-      this.selectedTask = updatedTask;
-    },
-    toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
-    },
-  },
-};
-</script> -->
 
 <script>
 import SidebarForm from '../components/sidebarForm.vue';
@@ -76,7 +30,7 @@ export default {
       taskArray: [],
       selectedTask: null,
       isSidebarForm: false,
-      isMenuOpen: false,
+      isMenuOpen: true,
     };
   },
   methods: {
@@ -86,6 +40,7 @@ export default {
         if (index !== -1) {
           this.taskArray[index] = task;
         } else {
+          task.id = Date.now();
           this.taskArray.push(task);
         }
         this.isSidebarForm = false;
@@ -96,15 +51,15 @@ export default {
       this.taskArray.splice(index, 1);
     },
     selectTask(task) {
-      if (this.selectedTask && this.selectedTask.title === task.title) {
+      if (this.selectedTask && this.selectedTask.id === task.id) {
         this.isSidebarForm = !this.isSidebarForm;
       } else {
-        this.selectedTask = task;
+        this.selectedTask = { ...task };
         this.isSidebarForm = true;
       }
     },
     toggleSidebarForm() {
-      this.selectedTask = { title: '', text: '' };
+      this.selectedTask = { title: '', text: '', id: Date.now() };
       this.isSidebarForm = true;
     },
     handleTaskChange(updatedTask) {
@@ -112,9 +67,9 @@ export default {
     },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style>

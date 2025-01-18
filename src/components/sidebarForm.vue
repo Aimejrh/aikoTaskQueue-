@@ -6,6 +6,7 @@
         <input type="text" id="title" v-model="newTask.title" placeholder="Введите заголовок"
           @input="checkFormValidity" />
       </div>
+      <div class="hr"></div>
       <div class="blokTextarea">
         <textarea v-model="newTask.text" id="text" placeholder="Введите описание" @input="checkFormValidity"></textarea>
       </div>
@@ -76,6 +77,11 @@ textarea {
   color: #ffffff;
 }
 
+.hr{
+  width: 100%;
+  height: 1px;
+  background: var(--white-t-color);
+}
 
 input,
 textarea::placeholder {

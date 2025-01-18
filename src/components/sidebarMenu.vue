@@ -2,28 +2,28 @@
   <aside :class="['sidebar']" :style="{ width: isMenuOpen ? '310px' : '60px' }">
     <div class="tasksContainer">
       <header class="sidebarHeader">
-        <button class="toggleCrossButton" @click="$emit('toggle-menu')">
+        <button class="toggleCrossButton" @click="toggleMenu">
           <img class="toggleCross" src="../../public/Vector.svg" alt="menu">
         </button>
       </header>
 
       <ul :style="{ display: isMenuOpen ? 'flex' : 'none' }" class="sidebarUl">
-        <li @click="$emit('select-task', task)" v-for="(task, index) in tasks" :key="index" class="sidebarLi"
+        <li @click="selectTask(task)" v-for="(task, index) in tasks" :key="task.id" class="sidebarLi"
           :class="{ selected: selectedTask && selectedTask.title === task.title }">
           <span class="taskTitle">{{ task.title }}</span>
-          <button @click.stop="$emit('delete-task', index)" class="delelteButton">
+          <button @click.stop="deleteTask(index)" class="deleteButton">
             <img src="../../public/Vector.svg" alt="delete">
           </button>
         </li>
       </ul>
     </div>
 
-    <button :style="{ display: isMenuOpen ? 'flex' : 'none' }" @click="$emit('toggle-sidebar-form')"
-      class="createrButton">
+    <button :style="{ display: isMenuOpen ? 'flex' : 'none' }" @click="toggleSidebarForm" class="createButton">
       Create
     </button>
   </aside>
 </template>
+
 <script>
 export default {
   props: {
@@ -39,8 +39,23 @@ export default {
       type: Boolean,
       default: true,
     },
+    toggleMenu: {
+      type: Function,
+      required: true,
+    },
+    toggleSidebarForm: {
+      type: Function,
+      required: true,
+    },
+    selectTask: {
+      type: Function,
+      required: true,
+    },
+    deleteTask: {
+      type: Function,
+      required: true,
+    },
   },
-  emits: ['delete-task', 'select-task', 'toggle-sidebar-form', 'toggle-menu'],
 };
 </script>
 
@@ -150,7 +165,7 @@ export default {
   transition: 0.4s ease;
 }
 
-.createrButton {
+.createButton {
   background: var(--button-color);
   color: var(--white-t-color);
 
@@ -167,11 +182,11 @@ export default {
 
 }
 
-.createrButton:active {
+.createButton:active {
   background: var(--button-h-color);
 }
 
-.delelteButton {
+.deleteButton {
   background: var(--delete-button);
 
   background: none;
