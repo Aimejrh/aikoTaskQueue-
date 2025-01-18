@@ -24,34 +24,31 @@ export default {
   },
   data() {
     return {
-      newTask: { ...this.selectedTask }, // Начальные данные задачи
-      isFormValid: false, // Проверка, что форма валидна
+      newTask: { ...this.selectedTask }, 
+      isFormValid: false, 
     };
   },
   watch: {
     selectedTask: {
       immediate: true,
       handler(newTask) {
-        this.newTask = { ...newTask }; // Обновляем форму при изменении выбранной задачи
-        this.isFormValid = newTask.title && newTask.text; // Проверка валидности формы
+        this.newTask = { ...newTask }; 
+        this.isFormValid = newTask.title && newTask.text; 
       },
     },
   },
   methods: {
-    // Функция проверки валидности формы
     checkFormValidity() {
       this.isFormValid = this.newTask.title && this.newTask.text;
     },
 
-    // Сохранение задачи
     saveTask() {
       if (this.isFormValid) {
-        this.$emit('task-changed', { ...this.newTask }); // Обновляем задачу в родительском компоненте
-        this.$emit('save-task', { ...this.newTask }); // Сохраняем задачу
+        this.$emit('task-changed', { ...this.newTask });
+        this.$emit('save-task', { ...this.newTask }); 
 
-        // После сохранения очищаем форму и скрываем её
-        this.newTask = { title: '', text: '' }; // Очищаем поля
-        this.isFormValid = false; // Деактивируем кнопку
+        this.newTask = { title: '', text: '' }; 
+        this.isFormValid = false; 
       }
     },
   },

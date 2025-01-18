@@ -7,60 +7,68 @@
 
     <div class="sectionTwo">
       <transition name="fade">
-        <SidebarForm v-if="isSidebarFormVisible" :selectedTask="selectedTask" @task-changed="handleTaskChange"
+        <SidebarForm v-if="isSidebarForm" :selectedTask="selectedTask" @task-changed="handleTaskChange"
           @save-task="saveTask" />
       </transition>
     </div>
   </div>
 </template>
 
-<script setup>
-import SidebarForm from '../components/sidebarForm.vue'
-import sidebarMenu from '../components/sidebarMenu.vue'
-import { ref } from 'vue';
-
-const taskArray = ref([]);
-const selectedTask = ref(null);
-const isSidebarFormVisible = ref(false);
-const isMenuOpen = ref(false);
-
-const saveTask = (task) => {
-  if (task.title && task.text) {
-    const index = taskArray.value.findIndex(t => t.title === task.title);
-    if (index !== -1) {
-      taskArray.value[index] = task;
-    } else {
-      taskArray.value.push(task);
-    }
-    isSidebarFormVisible.value = false;
-    selectedTask.value = null;
-  }
-};
-
-const deleteTask = (index) => {
-  taskArray.value.splice(index, 1);
-};
-
-const selectTask = (task) => {
-  if (selectedTask.value && selectedTask.value.title === task.title) {
-    isSidebarFormVisible.value = !isSidebarFormVisible.value;
-  } else {
-    selectedTask.value = task;
-    isSidebarFormVisible.value = true;
-  }
-};
-
-const toggleSidebarForm = () => {
-  selectedTask.value = { title: '', text: '' };
-  isSidebarFormVisible.value = true;
-};
-
-const handleTaskChange = (updatedTask) => {
-  selectedTask.value = updatedTask;
-};
-
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
+<script>
+import sidebarMenu from '../components/sidebarMenu.vue';
+import SidebarForm from '../components/sidebarForm.vue';
+export default {
+  components: {
+    sidebarMenu,
+    SidebarForm,
+  },
+  data() {
+    return {
+      taskArray: [],
+      selectedTask: null,
+      isSidebarForm: false,
+      isMenuOpen: false,
+    };
+  },
+  methods: {
+    saveTask(task) {
+      if (task.title && task.text) {
+        const index = this.taskArray.findIndex(t => t.title === task.title);
+        if (index !== -1) {
+          this.taskArray[index] = task;
+        } else {
+          this.taskArray.push(task);
+        }
+        this.isSidebarForm = false;
+        this.selectedTask = null;
+      }
+    },
+    deleteTask(index) {
+      this.taskArray.splice(index, 1);
+    },
+    selectTask(task) {
+      if (task.title && task.text) {
+        const index = this.taskArray.findIndex(t => t.id === task.id);
+        if (index !== -1) {
+          this.taskArray[index] = task;
+        } else {
+          this.taskArray.push({ ...task, id: Date.now() });
+        }
+        this.isSidebarForm = false;
+        this.selectedTask = null;
+      }
+    },
+    toggleSidebarForm() {
+      this.selectedTask = { title: '', text: '' };
+      this.isSidebarForm = true;
+    },
+    handleTaskChange(updatedTask) {
+      this.selectedTask = updatedTask;
+    },
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    },
+  },
 };
 </script>
 
