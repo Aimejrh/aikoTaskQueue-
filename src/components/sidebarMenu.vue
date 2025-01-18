@@ -1,30 +1,3 @@
-<!-- <template>
-  <aside :class="['sidebar']" :style="{ width: isMenuOpen ? '250px' : '80px' }">
-    <div class="tasksContainer">
-      <header class="sidebarHeader">
-        <div :style="{ display: isMenuOpen ? 'flex' : 'none' }" class="headerLogo">
-          <img src="" alt="Logo">
-        </div>
-
-        <button class="menuToggle" @click="$emit('toggle-menu')">
-          <img class="toggleCross" src="../../public/Vector.svg" alt="menu">
-        </button>
-      </header>
-      <ul :style="{ display: isMenuOpen ? 'flex' : 'none' }" class="sidebarUl">
-        <li @click="$emit('select-task', task)" v-for="(task, index) in tasks" :key="index" class="sidebarLi"
-          :class="{ selected: selectedTask && selectedTask.title === task.title }">
-          <span class="taskTitle">{{ task.title }}</span>
-          <button @click="$emit('delete-task', index)" class="delelteButton">
-            <img src="../../public/Vector.svg" alt="delete">
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <button :style="{ display: isMenuOpen ? 'block' : 'none' }" @click="$emit('toggle-sidebar-form')" class="createrButton">Create</button>
-  </aside>
-</template> -->
-
 <template>
   <aside :class="['sidebar']" :style="{ width: isMenuOpen ? '310px' : '60px' }">
     <div class="tasksContainer">

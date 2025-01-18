@@ -76,7 +76,8 @@ const toggleMenu = () => {
 }
 
 .todoPage {
-  background: var(--page-color);
+  background-image: url("https://sotni.ru/wp-content/uploads/2023/08/kirpichnaia-stena-s-podsvetkoi-35.webp");
+  background-size: cover;
   display: flex;
   flex-direction: row;
   width: 100%;
