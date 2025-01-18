@@ -94,7 +94,6 @@ export default {
   width: 310px;
   background: var(--bg-color);
   padding: 15px 10px;
-  position: relative;
   border-radius: 12px;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   transition: 0.4s;
