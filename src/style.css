@@ -5,7 +5,8 @@
 }
 
 :root{
-  --bg-color: linear-gradient(135deg, #9fd7ff, #F368E0);
+  --bg-color: linear-gradient(135deg, #b0d1e8, #f9cbf3);
+  --bg-f-color: linear-gradient(135deg,#ede4ec, #d0d9e0);
   --item-color:  #7758d4;
   --button-color:  #7758d4;
   --button-h-color:  #3d287c;

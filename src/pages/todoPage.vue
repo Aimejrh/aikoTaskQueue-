@@ -4,7 +4,6 @@
       <sidebarMenu :tasks="taskArray" :selectedTask="selectedTask" :toggleMenu="toggleMenu"
         :toggleSidebarForm="toggleSidebarForm" :selectTask="selectTask" :deleteTask="deleteTask"
         :isMenuOpen="isMenuOpen" />
-
     </div>
 
     <div class="sectionTwo">
@@ -84,7 +83,7 @@ export default {
 }
 
 .todoPage {
-  background-image: url("https://sotni.ru/wp-content/uploads/2023/08/kirpichnaia-stena-s-podsvetkoi-35.webp");
+  background: var(--bg-f-color);
   background-size: cover;
   display: flex;
   flex-direction: row;
